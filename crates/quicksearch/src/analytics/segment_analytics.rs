@@ -30,10 +30,10 @@ use crate::option::{
 use crate::routes::{create_all_stats, Stats};
 use crate::Opt;
 
-const ANALYTICS_HEADER: &str = "X-Meilisearch-Client";
-const MEILI_SERVER_PROVIDER: &str = "MEILI_SERVER_PROVIDER";
+const ANALYTICS_HEADER: &str = "X-Quicksearch-Client";
+const MEILI_SERVER_PROVIDER: &str = "QUICKSEARCH_SERVER_PROVIDER";
 
-/// Write the instance-uid in the `data.ms` and in `~/.config/MeiliSearch/path-to-db-instance-uid`. Ignore the errors.
+/// Write the instance-uid in the `data.ms` and in `~/.config/Quicksearch/path-to-db-instance-uid`. Ignore the errors.
 fn write_user_id(db_path: &Path, user_id: &InstanceUid) {
     let _ = fs::write(db_path.join("instance-uid"), user_id.to_string());
     if let Some((meilisearch_config_path, user_id_path)) =
@@ -133,11 +133,11 @@ impl SegmentAnalytics {
         }
 
         let client =
-            HttpClient::new(client.unwrap(), "https://telemetry.meilisearch.com".to_string());
+            HttpClient::new(client.unwrap(), "https://telemetry.disabled".to_string());
         let user = User::UserId { user_id: instance_uid.to_string() };
         let mut batcher = AutoBatcher::new(client, Batcher::new(None), SEGMENT_API_KEY.to_string());
 
-        // If Meilisearch is Launched for the first time:
+        // If Quicksearch is Launched for the first time:
         // 1. Send an event Launched associated to the user `total_launch`.
         // 2. Batch an event Launched with the real instance-id and send it in one hour.
         if first_time_run {

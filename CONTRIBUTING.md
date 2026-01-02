@@ -1,12 +1,12 @@
 # Contributing
 
-First, thank you for contributing to Meilisearch! The goal of this document is to provide everything you need to start contributing to Meilisearch.
+First, thank you for contributing to Quicksearch! The goal of this document is to provide everything you need to start contributing to Quicksearch.
 
-Remember that there are many ways to contribute other than writing code: writing [tutorials or blog posts](https://github.com/meilisearch/awesome-meilisearch), improving [the documentation](https://github.com/meilisearch/documentation), submitting [bug reports](https://github.com/meilisearch/meilisearch/issues/new?assignees=&labels=&template=bug_report.md&title=) and [feature requests](https://github.com/meilisearch/product/discussions/categories/feedback-feature-proposal)...
+Remember that there are many ways to contribute other than writing code: writing [tutorials or blog posts](https://github.com/quicksearch/awesome-quicksearch), improving [the documentation](https://github.com/quicksearch/documentation), submitting [bug reports](https://github.com/quicksearch/quicksearch/issues/new?assignees=&labels=&template=bug_report.md&title=) and [feature requests](https://github.com/quicksearch/product/discussions/categories/feedback-feature-proposal)...
 
-Meilisearch can manage multiple indexes, handle the update store, and expose an HTTP API. Search and indexation are the domain of our core engine, [`milli`](https://github.com/meilisearch/meilisearch/tree/main/milli), while tokenization is handled by [our `charabia` library](https://github.com/meilisearch/charabia/).
+Quicksearch can manage multiple indexes, handle the update store, and expose an HTTP API. Search and indexation are the domain of our core engine, [`milli`](https://github.com/quicksearch/quicksearch/tree/main/milli), while tokenization is handled by [our `charabia` library](https://github.com/quicksearch/charabia/).
 
-If Meilisearch does not offer optimized support for your language, please consider contributing to `charabia` by following the [CONTRIBUTING.md file](https://github.com/meilisearch/charabia/blob/main/CONTRIBUTING.md) and integrating your intended normalizer/segmenter.
+If Quicksearch does not offer optimized support for your language, please consider contributing to `charabia` by following the [CONTRIBUTING.md file](https://github.com/quicksearch/charabia/blob/main/CONTRIBUTING.md) and integrating your intended normalizer/segmenter.
 
 ## Table of Contents
 
@@ -19,30 +19,30 @@ If Meilisearch does not offer optimized support for your language, please consid
 ## Assumptions
 
 1. **You're familiar with [GitHub](https://github.com) and the [Pull Requests (PR)](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) workflow.**
-2. **You've read the Meilisearch [documentation](https://www.meilisearch.com/docs).**
-3. **You know about the [Meilisearch community on Discord](https://discord.meilisearch.com).
+2. **You've read the Quicksearch [documentation](https://www.quicksearch.com/docs).**
+3. **You know about the [Quicksearch community on Discord](https://discord.quicksearch.com).
    Please use this for help.**
 
 ## How to Contribute
 
 1. Ensure your change has an issue! Find an
-   [existing issue](https://github.com/meilisearch/meilisearch/issues/) or [open a new issue](https://github.com/meilisearch/meilisearch/issues/new).
+   [existing issue](https://github.com/quicksearch/quicksearch/issues/) or [open a new issue](https://github.com/quicksearch/quicksearch/issues/new).
    * This is where you can get a feel if the change will be accepted or not.
-2. Once approved, [fork the Meilisearch repository](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) in your own GitHub account.
+2. Once approved, [fork the Quicksearch repository](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) in your own GitHub account.
 3. [Create a new Git branch](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository)
 4. Review the [Development Workflow](#development-workflow) section that describes the steps to maintain the repository.
 5. Make your changes on your branch.
-6. [Submit the branch as a Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) pointing to the `main` branch of the Meilisearch repository. A maintainer should comment and/or review your Pull Request within a few days. Although depending on the circumstances, it may take longer.
+6. [Submit the branch as a Pull Request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork) pointing to the `main` branch of the Quicksearch repository. A maintainer should comment and/or review your Pull Request within a few days. Although depending on the circumstances, it may take longer.
 
 ## Development Workflow
 
-### Setup and run Meilisearch
+### Setup and run Quicksearch
 
 ```bash
 cargo run --release
 ```
 
-We recommend using the `--release` flag to test the full performance of Meilisearch.
+We recommend using the `--release` flag to test the full performance of Quicksearch.
 
 ### Test
 
@@ -62,8 +62,8 @@ We recommend using the standard `$HOME/.cache/lindera` directory:
 export LINDERA_CACHE=$HOME/.cache/lindera
 ```
 
-Furthermore, you can improve incremental compilation by setting the `MEILI_NO_VERGEN` environment variable.
-Setting this variable will prevent the Meilisearch binary from being rebuilt each time the directory that hosts the Meilisearch repository changes.
+Furthermore, you can improve incremental compilation by setting the `QUICKSEARCH_NO_VERGEN` environment variable.
+Setting this variable will prevent the Quicksearch binary from being rebuilt each time the directory that hosts the Quicksearch repository changes.
 Do not enable this environment variable for production builds (as it will break the `version` route, among other things).
 
 #### Snapshot-based tests
@@ -75,10 +75,10 @@ New tests should use insta where possible rather than manual `assert` statements
 
 Furthermore, we provide some macros on top of insta, notably a way to use snapshot hashes instead of inline snapshots, saving a lot of space in the repository.
 
-To effectively debug snapshot-based hashes, we recommend you export the `MEILI_TEST_FULL_SNAPS` environment variable so that snapshot are fully created locally:
+To effectively debug snapshot-based hashes, we recommend you export the `QUICKSEARCH_TEST_FULL_SNAPS` environment variable so that snapshot are fully created locally:
 
 ```sh
-export MEILI_TEST_FULL_SNAPS=true # add this to your .bashrc, .zshrc, ...
+export QUICKSEARCH_TEST_FULL_SNAPS=true # add this to your .bashrc, .zshrc, ...
 ```
 
 #### Test troubleshooting
@@ -91,13 +91,13 @@ ulimit -Sn 3000
 
 #### Build tools
 
-Meilisearch follows the [cargo xtask](https://github.com/matklad/cargo-xtask) workflow to provide some build tools.
+Quicksearch follows the [cargo xtask](https://github.com/matklad/cargo-xtask) workflow to provide some build tools.
 
 Run `cargo xtask --help` from the root of the repository to find out what is available.
 
 ### Logging
 
-Meilisearch uses [`tracing`](https://lib.rs/crates/tracing) for logging purposes. Tracing logs are structured and can be displayed as JSON to the end user, so prefer passing arguments as fields rather than interpolating them in the message.
+Quicksearch uses [`tracing`](https://lib.rs/crates/tracing) for logging purposes. Tracing logs are structured and can be displayed as JSON to the end user, so prefer passing arguments as fields rather than interpolating them in the message.
 
 Refer to the [documentation](https://docs.rs/tracing/0.1.40/tracing/index.html#using-the-macros) for the syntax of the spans and events.
 
@@ -149,24 +149,24 @@ Some notes on GitHub PRs:
 
 ## Release Process (for internal team only)
 
-Meilisearch tools follow the [Semantic Versioning Convention](https://semver.org/).
+Quicksearch tools follow the [Semantic Versioning Convention](https://semver.org/).
 
 ### Automation to rebase and Merge the PRs
 
 This project integrates a bot that helps us manage pull requests merging.<br>
-_[Read more about this](https://github.com/meilisearch/integration-guides/blob/main/resources/bors.md)._
+_[Read more about this](https://github.com/quicksearch/integration-guides/blob/main/resources/bors.md)._
 
 ### How to Publish a new Release
 
-The full Meilisearch release process is described in [this guide](https://github.com/meilisearch/engine-team/blob/main/resources/meilisearch-release.md). Please follow it carefully before doing any release.
+The full Quicksearch release process is described in [this guide](https://github.com/quicksearch/engine-team/blob/main/resources/quicksearch-release.md). Please follow it carefully before doing any release.
 
 ### How to publish a prototype
 
-Depending on the developed feature, you might need to provide a prototyped version of Meilisearch to make it easier to test by the users.
+Depending on the developed feature, you might need to provide a prototyped version of Quicksearch to make it easier to test by the users.
 
 This happens in two steps:
-- [Release the prototype](https://github.com/meilisearch/engine-team/blob/main/resources/prototypes.md#how-to-publish-a-prototype)
-- [Communicate about it](https://github.com/meilisearch/engine-team/blob/main/resources/prototypes.md#communication)
+- [Release the prototype](https://github.com/quicksearch/engine-team/blob/main/resources/prototypes.md#how-to-publish-a-prototype)
+- [Communicate about it](https://github.com/quicksearch/engine-team/blob/main/resources/prototypes.md#communication)
 
 ### Release assets
 

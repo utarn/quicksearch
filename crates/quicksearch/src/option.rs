@@ -23,46 +23,46 @@ use url::Url;
 
 const POSSIBLE_ENV: [&str; 2] = ["development", "production"];
 
-const MEILI_DB_PATH: &str = "MEILI_DB_PATH";
-const MEILI_HTTP_ADDR: &str = "MEILI_HTTP_ADDR";
-const MEILI_MASTER_KEY: &str = "MEILI_MASTER_KEY";
-const MEILI_ENV: &str = "MEILI_ENV";
-const MEILI_TASK_WEBHOOK_URL: &str = "MEILI_TASK_WEBHOOK_URL";
-const MEILI_TASK_WEBHOOK_AUTHORIZATION_HEADER: &str = "MEILI_TASK_WEBHOOK_AUTHORIZATION_HEADER";
-const MEILI_NO_ANALYTICS: &str = "MEILI_NO_ANALYTICS";
-const MEILI_HTTP_PAYLOAD_SIZE_LIMIT: &str = "MEILI_HTTP_PAYLOAD_SIZE_LIMIT";
-const MEILI_SSL_CERT_PATH: &str = "MEILI_SSL_CERT_PATH";
-const MEILI_SSL_KEY_PATH: &str = "MEILI_SSL_KEY_PATH";
-const MEILI_SSL_AUTH_PATH: &str = "MEILI_SSL_AUTH_PATH";
-const MEILI_SSL_OCSP_PATH: &str = "MEILI_SSL_OCSP_PATH";
-const MEILI_SSL_REQUIRE_AUTH: &str = "MEILI_SSL_REQUIRE_AUTH";
-const MEILI_SSL_RESUMPTION: &str = "MEILI_SSL_RESUMPTION";
-const MEILI_SSL_TICKETS: &str = "MEILI_SSL_TICKETS";
-const MEILI_IMPORT_SNAPSHOT: &str = "MEILI_IMPORT_SNAPSHOT";
-const MEILI_IGNORE_MISSING_SNAPSHOT: &str = "MEILI_IGNORE_MISSING_SNAPSHOT";
-const MEILI_IGNORE_SNAPSHOT_IF_DB_EXISTS: &str = "MEILI_IGNORE_SNAPSHOT_IF_DB_EXISTS";
-const MEILI_SNAPSHOT_DIR: &str = "MEILI_SNAPSHOT_DIR";
-const MEILI_SCHEDULE_SNAPSHOT: &str = "MEILI_SCHEDULE_SNAPSHOT";
-const MEILI_IMPORT_DUMP: &str = "MEILI_IMPORT_DUMP";
-const MEILI_IGNORE_MISSING_DUMP: &str = "MEILI_IGNORE_MISSING_DUMP";
-const MEILI_IGNORE_DUMP_IF_DB_EXISTS: &str = "MEILI_IGNORE_DUMP_IF_DB_EXISTS";
-const MEILI_DUMP_DIR: &str = "MEILI_DUMP_DIR";
-const MEILI_LOG_LEVEL: &str = "MEILI_LOG_LEVEL";
-const MEILI_EXPERIMENTAL_LOGS_MODE: &str = "MEILI_EXPERIMENTAL_LOGS_MODE";
-const MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE: &str = "MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE";
-const MEILI_EXPERIMENTAL_REPLICATION_PARAMETERS: &str = "MEILI_EXPERIMENTAL_REPLICATION_PARAMETERS";
-const MEILI_EXPERIMENTAL_ENABLE_LOGS_ROUTE: &str = "MEILI_EXPERIMENTAL_ENABLE_LOGS_ROUTE";
-const MEILI_EXPERIMENTAL_CONTAINS_FILTER: &str = "MEILI_EXPERIMENTAL_CONTAINS_FILTER";
-const MEILI_EXPERIMENTAL_ENABLE_METRICS: &str = "MEILI_EXPERIMENTAL_ENABLE_METRICS";
-const MEILI_EXPERIMENTAL_SEARCH_QUEUE_SIZE: &str = "MEILI_EXPERIMENTAL_SEARCH_QUEUE_SIZE";
-const MEILI_EXPERIMENTAL_DROP_SEARCH_AFTER: &str = "MEILI_EXPERIMENTAL_DROP_SEARCH_AFTER";
-const MEILI_EXPERIMENTAL_NB_SEARCHES_PER_CORE: &str = "MEILI_EXPERIMENTAL_NB_SEARCHES_PER_CORE";
-const MEILI_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE: &str =
-    "MEILI_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE";
-const MEILI_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS: &str =
-    "MEILI_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS";
-const MEILI_EXPERIMENTAL_LIMIT_BATCHED_TASKS_TOTAL_SIZE: &str =
-    "MEILI_EXPERIMENTAL_LIMIT_BATCHED_TASKS_SIZE";
+const QUICKSEARCH_DB_PATH: &str = "QUICKSEARCH_DB_PATH";
+const QUICKSEARCH_HTTP_ADDR: &str = "QUICKSEARCH_HTTP_ADDR";
+const QUICKSEARCH_MASTER_KEY: &str = "QUICKSEARCH_MASTER_KEY";
+const QUICKSEARCH_ENV: &str = "QUICKSEARCH_ENV";
+const QUICKSEARCH_TASK_WEBHOOK_URL: &str = "QUICKSEARCH_TASK_WEBHOOK_URL";
+const QUICKSEARCH_TASK_WEBHOOK_AUTHORIZATION_HEADER: &str = "QUICKSEARCH_TASK_WEBHOOK_AUTHORIZATION_HEADER";
+const QUICKSEARCH_NO_ANALYTICS: &str = "QUICKSEARCH_NO_ANALYTICS";
+const QUICKSEARCH_HTTP_PAYLOAD_SIZE_LIMIT: &str = "QUICKSEARCH_HTTP_PAYLOAD_SIZE_LIMIT";
+const QUICKSEARCH_SSL_CERT_PATH: &str = "QUICKSEARCH_SSL_CERT_PATH";
+const QUICKSEARCH_SSL_KEY_PATH: &str = "QUICKSEARCH_SSL_KEY_PATH";
+const QUICKSEARCH_SSL_AUTH_PATH: &str = "QUICKSEARCH_SSL_AUTH_PATH";
+const QUICKSEARCH_SSL_OCSP_PATH: &str = "QUICKSEARCH_SSL_OCSP_PATH";
+const QUICKSEARCH_SSL_REQUIRE_AUTH: &str = "QUICKSEARCH_SSL_REQUIRE_AUTH";
+const QUICKSEARCH_SSL_RESUMPTION: &str = "QUICKSEARCH_SSL_RESUMPTION";
+const QUICKSEARCH_SSL_TICKETS: &str = "QUICKSEARCH_SSL_TICKETS";
+const QUICKSEARCH_IMPORT_SNAPSHOT: &str = "QUICKSEARCH_IMPORT_SNAPSHOT";
+const QUICKSEARCH_IGNORE_MISSING_SNAPSHOT: &str = "QUICKSEARCH_IGNORE_MISSING_SNAPSHOT";
+const QUICKSEARCH_IGNORE_SNAPSHOT_IF_DB_EXISTS: &str = "QUICKSEARCH_IGNORE_SNAPSHOT_IF_DB_EXISTS";
+const QUICKSEARCH_SNAPSHOT_DIR: &str = "QUICKSEARCH_SNAPSHOT_DIR";
+const QUICKSEARCH_SCHEDULE_SNAPSHOT: &str = "QUICKSEARCH_SCHEDULE_SNAPSHOT";
+const QUICKSEARCH_IMPORT_DUMP: &str = "QUICKSEARCH_IMPORT_DUMP";
+const QUICKSEARCH_IGNORE_MISSING_DUMP: &str = "QUICKSEARCH_IGNORE_MISSING_DUMP";
+const QUICKSEARCH_IGNORE_DUMP_IF_DB_EXISTS: &str = "QUICKSEARCH_IGNORE_DUMP_IF_DB_EXISTS";
+const QUICKSEARCH_DUMP_DIR: &str = "QUICKSEARCH_DUMP_DIR";
+const QUICKSEARCH_LOG_LEVEL: &str = "QUICKSEARCH_LOG_LEVEL";
+const QUICKSEARCH_EXPERIMENTAL_LOGS_MODE: &str = "QUICKSEARCH_EXPERIMENTAL_LOGS_MODE";
+const QUICKSEARCH_EXPERIMENTAL_DUMPLESS_UPGRADE: &str = "QUICKSEARCH_EXPERIMENTAL_DUMPLESS_UPGRADE";
+const QUICKSEARCH_EXPERIMENTAL_REPLICATION_PARAMETERS: &str = "QUICKSEARCH_EXPERIMENTAL_REPLICATION_PARAMETERS";
+const QUICKSEARCH_EXPERIMENTAL_ENABLE_LOGS_ROUTE: &str = "QUICKSEARCH_EXPERIMENTAL_ENABLE_LOGS_ROUTE";
+const QUICKSEARCH_EXPERIMENTAL_CONTAINS_FILTER: &str = "QUICKSEARCH_EXPERIMENTAL_CONTAINS_FILTER";
+const QUICKSEARCH_EXPERIMENTAL_ENABLE_METRICS: &str = "QUICKSEARCH_EXPERIMENTAL_ENABLE_METRICS";
+const QUICKSEARCH_EXPERIMENTAL_SEARCH_QUEUE_SIZE: &str = "QUICKSEARCH_EXPERIMENTAL_SEARCH_QUEUE_SIZE";
+const QUICKSEARCH_EXPERIMENTAL_DROP_SEARCH_AFTER: &str = "QUICKSEARCH_EXPERIMENTAL_DROP_SEARCH_AFTER";
+const QUICKSEARCH_EXPERIMENTAL_NB_SEARCHES_PER_CORE: &str = "QUICKSEARCH_EXPERIMENTAL_NB_SEARCHES_PER_CORE";
+const QUICKSEARCH_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE: &str =
+    "QUICKSEARCH_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE";
+const QUICKSEARCH_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS: &str =
+    "QUICKSEARCH_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS";
+const QUICKSEARCH_EXPERIMENTAL_LIMIT_BATCHED_TASKS_TOTAL_SIZE: &str =
+    "QUICKSEARCH_EXPERIMENTAL_LIMIT_BATCHED_TASKS_SIZE";
 
 const DEFAULT_CONFIG_FILE_PATH: &str = "./config.toml";
 const DEFAULT_DB_PATH: &str = "./data.ms";
@@ -74,8 +74,8 @@ const DEFAULT_SNAPSHOT_INTERVAL_SEC: u64 = 86400;
 const DEFAULT_SNAPSHOT_INTERVAL_SEC_STR: &str = "86400";
 const DEFAULT_DUMP_DIR: &str = "dumps/";
 
-const MEILI_MAX_INDEXING_MEMORY: &str = "MEILI_MAX_INDEXING_MEMORY";
-const MEILI_MAX_INDEXING_THREADS: &str = "MEILI_MAX_INDEXING_THREADS";
+const QUICKSEARCH_MAX_INDEXING_MEMORY: &str = "QUICKSEARCH_MAX_INDEXING_MEMORY";
+const QUICKSEARCH_MAX_INDEXING_THREADS: &str = "QUICKSEARCH_MAX_INDEXING_THREADS";
 const DEFAULT_LOG_EVERY_N: usize = 100_000;
 
 // Each environment (index and task-db) is taking space in the virtual address space.
@@ -181,31 +181,31 @@ impl FromStr for LogLevel {
 #[serde(rename_all = "snake_case", deny_unknown_fields)]
 pub struct Opt {
     /// Designates the location where database files will be created and retrieved.
-    #[clap(long, env = MEILI_DB_PATH, default_value_os_t = default_db_path())]
+    #[clap(long, env = QUICKSEARCH_DB_PATH, default_value_os_t = default_db_path())]
     #[serde(default = "default_db_path")]
     pub db_path: PathBuf,
 
     /// Sets the HTTP address and port Meilisearch will use.
-    #[clap(long, env = MEILI_HTTP_ADDR, default_value_t = default_http_addr())]
+    #[clap(long, env = QUICKSEARCH_HTTP_ADDR, default_value_t = default_http_addr())]
     #[serde(default = "default_http_addr")]
     pub http_addr: String,
 
     /// Sets the instance's master key, automatically protecting all routes except `GET /health`.
-    #[clap(long, env = MEILI_MASTER_KEY)]
+    #[clap(long, env = QUICKSEARCH_MASTER_KEY)]
     pub master_key: Option<String>,
 
     /// Configures the instance's environment. Value must be either `production` or `development`.
-    #[clap(long, env = MEILI_ENV, default_value_t = default_env(), value_parser = POSSIBLE_ENV)]
+    #[clap(long, env = QUICKSEARCH_ENV, default_value_t = default_env(), value_parser = POSSIBLE_ENV)]
     #[serde(default = "default_env")]
     pub env: String,
 
     /// Called whenever a task finishes so a third party can be notified.
-    #[clap(long, env = MEILI_TASK_WEBHOOK_URL)]
+    #[clap(long, env = QUICKSEARCH_TASK_WEBHOOK_URL)]
     pub task_webhook_url: Option<Url>,
 
     /// The Authorization header to send on the webhook URL whenever
     /// a task finishes so a third party can be notified.
-    #[clap(long, env = MEILI_TASK_WEBHOOK_AUTHORIZATION_HEADER)]
+    #[clap(long, env = QUICKSEARCH_TASK_WEBHOOK_AUTHORIZATION_HEADER)]
     pub task_webhook_authorization_header: Option<String>,
 
     /// Deactivates Meilisearch's built-in telemetry when provided.
@@ -215,7 +215,7 @@ pub struct Opt {
     /// for the purpose of improving Meilisearch, and can be deleted
     /// at any time.
     #[serde(default)] // we can't send true
-    #[clap(long, env = MEILI_NO_ANALYTICS)]
+    #[clap(long, env = QUICKSEARCH_NO_ANALYTICS)]
     pub no_analytics: bool,
 
     /// Sets the maximum size of the index. Value must be given in bytes or explicitly
@@ -232,45 +232,45 @@ pub struct Opt {
 
     /// Sets the maximum size of accepted payloads. Value must be given in bytes or explicitly stating a
     /// base unit (for instance: 107374182400, '107.7Gb', or '107374 Mb').
-    #[clap(long, env = MEILI_HTTP_PAYLOAD_SIZE_LIMIT, default_value_t = default_http_payload_size_limit())]
+    #[clap(long, env = QUICKSEARCH_HTTP_PAYLOAD_SIZE_LIMIT, default_value_t = default_http_payload_size_limit())]
     #[serde(default = "default_http_payload_size_limit")]
     pub http_payload_size_limit: Byte,
 
     /// Sets the server's SSL certificates.
-    #[clap(long, env = MEILI_SSL_CERT_PATH, value_parser)]
+    #[clap(long, env = QUICKSEARCH_SSL_CERT_PATH, value_parser)]
     pub ssl_cert_path: Option<PathBuf>,
 
     /// Sets the server's SSL key files.
-    #[clap(long, env = MEILI_SSL_KEY_PATH, value_parser)]
+    #[clap(long, env = QUICKSEARCH_SSL_KEY_PATH, value_parser)]
     pub ssl_key_path: Option<PathBuf>,
 
     /// Enables client authentication in the specified path.
-    #[clap(long, env = MEILI_SSL_AUTH_PATH, value_parser)]
+    #[clap(long, env = QUICKSEARCH_SSL_AUTH_PATH, value_parser)]
     pub ssl_auth_path: Option<PathBuf>,
 
     /// Sets the server's OCSP file. *Optional*
     ///
     /// Reads DER-encoded OCSP response from OCSPFILE and staple to certificate.
-    #[clap(long, env = MEILI_SSL_OCSP_PATH, value_parser)]
+    #[clap(long, env = QUICKSEARCH_SSL_OCSP_PATH, value_parser)]
     pub ssl_ocsp_path: Option<PathBuf>,
 
     /// Makes SSL authentication mandatory.
     #[serde(default)]
-    #[clap(long, env = MEILI_SSL_REQUIRE_AUTH)]
+    #[clap(long, env = QUICKSEARCH_SSL_REQUIRE_AUTH)]
     pub ssl_require_auth: bool,
 
     /// Activates SSL session resumption.
     #[serde(default)]
-    #[clap(long, env = MEILI_SSL_RESUMPTION)]
+    #[clap(long, env = QUICKSEARCH_SSL_RESUMPTION)]
     pub ssl_resumption: bool,
 
     /// Activates SSL tickets.
     #[serde(default)]
-    #[clap(long, env = MEILI_SSL_TICKETS)]
+    #[clap(long, env = QUICKSEARCH_SSL_TICKETS)]
     pub ssl_tickets: bool,
 
     /// Launches Meilisearch after importing a previously-generated snapshot at the given filepath.
-    #[clap(long, env = MEILI_IMPORT_SNAPSHOT)]
+    #[clap(long, env = QUICKSEARCH_IMPORT_SNAPSHOT)]
     pub import_snapshot: Option<PathBuf>,
 
     /// Prevents a Meilisearch instance from throwing an error when `--import-snapshot`
@@ -279,7 +279,7 @@ pub struct Opt {
     /// This command will throw an error if `--import-snapshot` is not defined.
     #[clap(
         long,
-        env = MEILI_IGNORE_MISSING_SNAPSHOT,
+        env = QUICKSEARCH_IGNORE_MISSING_SNAPSHOT,
         requires = "import_snapshot"
     )]
     #[serde(default)]
@@ -292,34 +292,34 @@ pub struct Opt {
     /// This command will throw an error if `--import-snapshot` is not defined.
     #[clap(
         long,
-        env = MEILI_IGNORE_SNAPSHOT_IF_DB_EXISTS,
+        env = QUICKSEARCH_IGNORE_SNAPSHOT_IF_DB_EXISTS,
         requires = "import_snapshot"
     )]
     #[serde(default)]
     pub ignore_snapshot_if_db_exists: bool,
 
     /// Sets the directory where Meilisearch will store snapshots.
-    #[clap(long, env = MEILI_SNAPSHOT_DIR, default_value_os_t = default_snapshot_dir())]
+    #[clap(long, env = QUICKSEARCH_SNAPSHOT_DIR, default_value_os_t = default_snapshot_dir())]
     #[serde(default = "default_snapshot_dir")]
     pub snapshot_dir: PathBuf,
 
     /// Activates scheduled snapshots when provided. Snapshots are disabled by default.
     ///
     /// When provided with a value, defines the interval between each snapshot, in seconds.
-    #[clap(long,env = MEILI_SCHEDULE_SNAPSHOT, num_args(0..=1), value_parser=parse_schedule_snapshot, default_value_t, default_missing_value=default_snapshot_interval_sec(),  value_name = "SNAPSHOT_INTERVAL_SEC")]
+    #[clap(long,env = QUICKSEARCH_SCHEDULE_SNAPSHOT, num_args(0..=1), value_parser=parse_schedule_snapshot, default_value_t, default_missing_value=default_snapshot_interval_sec(),  value_name = "SNAPSHOT_INTERVAL_SEC")]
     #[serde(default, deserialize_with = "schedule_snapshot_deserialize")]
     pub schedule_snapshot: ScheduleSnapshot,
 
     /// Imports the dump file located at the specified path. Path must point to a `.dump` file.
     /// If a database already exists, Meilisearch will throw an error and abort launch.
-    #[clap(long, env = MEILI_IMPORT_DUMP, conflicts_with = "import_snapshot")]
+    #[clap(long, env = QUICKSEARCH_IMPORT_DUMP, conflicts_with = "import_snapshot")]
     pub import_dump: Option<PathBuf>,
 
     /// Prevents Meilisearch from throwing an error when `--import-dump` does not point to
     /// a valid dump file. Instead, Meilisearch will start normally without importing any dump.
     ///
     /// This option will trigger an error if `--import-dump` is not defined.
-    #[clap(long, env = MEILI_IGNORE_MISSING_DUMP, requires = "import_dump")]
+    #[clap(long, env = QUICKSEARCH_IGNORE_MISSING_DUMP, requires = "import_dump")]
     #[serde(default)]
     pub ignore_missing_dump: bool,
 
@@ -328,12 +328,12 @@ pub struct Opt {
     /// launch using the existing database.
     ///
     /// This option will trigger an error if `--import-dump` is not defined.
-    #[clap(long, env = MEILI_IGNORE_DUMP_IF_DB_EXISTS, requires = "import_dump")]
+    #[clap(long, env = QUICKSEARCH_IGNORE_DUMP_IF_DB_EXISTS, requires = "import_dump")]
     #[serde(default)]
     pub ignore_dump_if_db_exists: bool,
 
     /// Sets the directory where Meilisearch will create dump files.
-    #[clap(long, env = MEILI_DUMP_DIR, default_value_os_t = default_dump_dir())]
+    #[clap(long, env = QUICKSEARCH_DUMP_DIR, default_value_os_t = default_dump_dir())]
     #[serde(default = "default_dump_dir")]
     pub dump_dir: PathBuf,
 
@@ -341,7 +341,7 @@ pub struct Opt {
     ///
     /// Meilisearch currently supports six log levels, listed in order of
     /// increasing verbosity: OFF, ERROR, WARN, INFO, DEBUG, TRACE.
-    #[clap(long, env = MEILI_LOG_LEVEL, default_value_t)]
+    #[clap(long, env = QUICKSEARCH_LOG_LEVEL, default_value_t)]
     #[serde(default)]
     pub log_level: LogLevel,
 
@@ -349,7 +349,7 @@ pub struct Opt {
     /// see: <https://github.com/orgs/meilisearch/discussions/763>
     ///
     /// Enables the experimental contains filter operator.
-    #[clap(long, env = MEILI_EXPERIMENTAL_CONTAINS_FILTER)]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_CONTAINS_FILTER)]
     #[serde(default)]
     pub experimental_contains_filter: bool,
 
@@ -357,7 +357,7 @@ pub struct Opt {
     /// see: <https://github.com/meilisearch/meilisearch/discussions/3518>
     ///
     /// Enables the Prometheus metrics on the `GET /metrics` endpoint.
-    #[clap(long, env = MEILI_EXPERIMENTAL_ENABLE_METRICS)]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_ENABLE_METRICS)]
     #[serde(default)]
     pub experimental_enable_metrics: bool,
 
@@ -369,7 +369,7 @@ pub struct Opt {
     /// it starts returning HTTP 503, Service Unavailable.
     ///
     /// The default value is 1000.
-    #[clap(long, env = MEILI_EXPERIMENTAL_SEARCH_QUEUE_SIZE, default_value_t = default_experimental_search_queue_size())]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_SEARCH_QUEUE_SIZE, default_value_t = default_experimental_search_queue_size())]
     #[serde(default = "default_experimental_search_queue_size")]
     pub experimental_search_queue_size: usize,
 
@@ -380,7 +380,7 @@ pub struct Opt {
     /// a search request irrelevant and drop it.
     ///
     /// The default value is 60.
-    #[clap(long, env = MEILI_EXPERIMENTAL_DROP_SEARCH_AFTER, default_value_t = default_drop_search_after())]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_DROP_SEARCH_AFTER, default_value_t = default_drop_search_after())]
     #[serde(default = "default_drop_search_after")]
     pub experimental_drop_search_after: NonZeroUsize,
 
@@ -389,7 +389,7 @@ pub struct Opt {
     ///
     /// Lets you customize how many search requests can run on each core concurrently.
     /// The default value is 4.
-    #[clap(long, env = MEILI_EXPERIMENTAL_NB_SEARCHES_PER_CORE, default_value_t = default_nb_searches_per_core())]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_NB_SEARCHES_PER_CORE, default_value_t = default_nb_searches_per_core())]
     #[serde(default = "default_nb_searches_per_core")]
     pub experimental_nb_searches_per_core: NonZeroUsize,
 
@@ -397,14 +397,14 @@ pub struct Opt {
     /// see: <https://github.com/orgs/meilisearch/discussions/723>
     ///
     /// Change the mode of the logs on the console.
-    #[clap(long, env = MEILI_EXPERIMENTAL_LOGS_MODE, default_value_t)]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_LOGS_MODE, default_value_t)]
     #[serde(default)]
     pub experimental_logs_mode: LogMode,
 
     /// Experimental dumpless upgrade. For more information, see: <https://github.com/orgs/meilisearch/discussions/804>
     ///
     /// When set, Meilisearch will auto-update its database without using a dump.
-    #[clap(long, env = MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE, default_value_t)]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_DUMPLESS_UPGRADE, default_value_t)]
     #[serde(default)]
     pub experimental_dumpless_upgrade: bool,
 
@@ -413,7 +413,7 @@ pub struct Opt {
     ///
     /// Enables the log routes on the `POST /logs/stream`, `POST /logs/stderr` endpoints,
     /// and the `DELETE /logs/stream` to stop receiving logs.
-    #[clap(long, env = MEILI_EXPERIMENTAL_ENABLE_LOGS_ROUTE)]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_ENABLE_LOGS_ROUTE)]
     #[serde(default)]
     pub experimental_enable_logs_route: bool,
 
@@ -424,25 +424,25 @@ pub struct Opt {
     /// - Lets you specify a custom task ID upon registering a task
     /// - Lets you execute dry-register a task (get an answer from the route but nothing is actually
     ///   registered in meilisearch and it won't be processed)
-    #[clap(long, env = MEILI_EXPERIMENTAL_REPLICATION_PARAMETERS)]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_REPLICATION_PARAMETERS)]
     #[serde(default)]
     pub experimental_replication_parameters: bool,
 
     /// Experimental RAM reduction during indexing, do not use in production,
     /// see: <https://github.com/meilisearch/product/discussions/652>
-    #[clap(long, env = MEILI_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE)]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE)]
     #[serde(default)]
     pub experimental_reduce_indexing_memory_usage: bool,
 
     /// Experimentally reduces the maximum number of tasks that will be processed at once,
     /// see: <https://github.com/orgs/meilisearch/discussions/713>
-    #[clap(long, env = MEILI_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS, default_value_t = default_limit_batched_tasks())]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS, default_value_t = default_limit_batched_tasks())]
     #[serde(default = "default_limit_batched_tasks")]
     pub experimental_max_number_of_batched_tasks: usize,
 
     /// Experimentally reduces the maximum total size, in bytes, of tasks that will be processed at once,
     /// see: <https://github.com/orgs/meilisearch/discussions/801>
-    #[clap(long, env = MEILI_EXPERIMENTAL_LIMIT_BATCHED_TASKS_TOTAL_SIZE, default_value_t = default_limit_batched_tasks_total_size())]
+    #[clap(long, env = QUICKSEARCH_EXPERIMENTAL_LIMIT_BATCHED_TASKS_TOTAL_SIZE, default_value_t = default_limit_batched_tasks_total_size())]
     #[serde(default = "default_limit_batched_tasks_total_size")]
     pub experimental_limit_batched_tasks_total_size: u64,
 
@@ -470,7 +470,7 @@ impl Opt {
         let user_specified_config_file_path = opts
             .config_file_path
             .clone()
-            .or_else(|| env::var("MEILI_CONFIG_FILE_PATH").map(PathBuf::from).ok());
+            .or_else(|| env::var("QUICKSEARCH_CONFIG_FILE_PATH").map(PathBuf::from).ok());
         let config_file_path = user_specified_config_file_path
             .clone()
             .unwrap_or_else(|| PathBuf::from(DEFAULT_CONFIG_FILE_PATH));
@@ -550,95 +550,95 @@ impl Opt {
             experimental_max_number_of_batched_tasks,
             experimental_limit_batched_tasks_total_size,
         } = self;
-        export_to_env_if_not_present(MEILI_DB_PATH, db_path);
-        export_to_env_if_not_present(MEILI_HTTP_ADDR, http_addr);
+        export_to_env_if_not_present(QUICKSEARCH_DB_PATH, db_path);
+        export_to_env_if_not_present(QUICKSEARCH_HTTP_ADDR, http_addr);
         if let Some(master_key) = master_key {
-            export_to_env_if_not_present(MEILI_MASTER_KEY, master_key);
+            export_to_env_if_not_present(QUICKSEARCH_MASTER_KEY, master_key);
         }
-        export_to_env_if_not_present(MEILI_ENV, env);
+        export_to_env_if_not_present(QUICKSEARCH_ENV, env);
         if let Some(task_webhook_url) = task_webhook_url {
-            export_to_env_if_not_present(MEILI_TASK_WEBHOOK_URL, task_webhook_url.to_string());
+            export_to_env_if_not_present(QUICKSEARCH_TASK_WEBHOOK_URL, task_webhook_url.to_string());
         }
         if let Some(task_webhook_authorization_header) = task_webhook_authorization_header {
             export_to_env_if_not_present(
-                MEILI_TASK_WEBHOOK_AUTHORIZATION_HEADER,
+                QUICKSEARCH_TASK_WEBHOOK_AUTHORIZATION_HEADER,
                 task_webhook_authorization_header,
             );
         }
 
-        export_to_env_if_not_present(MEILI_NO_ANALYTICS, no_analytics.to_string());
+        export_to_env_if_not_present(QUICKSEARCH_NO_ANALYTICS, no_analytics.to_string());
         export_to_env_if_not_present(
-            MEILI_HTTP_PAYLOAD_SIZE_LIMIT,
+            QUICKSEARCH_HTTP_PAYLOAD_SIZE_LIMIT,
             http_payload_size_limit.to_string(),
         );
         if let Some(ssl_cert_path) = ssl_cert_path {
-            export_to_env_if_not_present(MEILI_SSL_CERT_PATH, ssl_cert_path);
+            export_to_env_if_not_present(QUICKSEARCH_SSL_CERT_PATH, ssl_cert_path);
         }
         if let Some(ssl_key_path) = ssl_key_path {
-            export_to_env_if_not_present(MEILI_SSL_KEY_PATH, ssl_key_path);
+            export_to_env_if_not_present(QUICKSEARCH_SSL_KEY_PATH, ssl_key_path);
         }
         if let Some(ssl_auth_path) = ssl_auth_path {
-            export_to_env_if_not_present(MEILI_SSL_AUTH_PATH, ssl_auth_path);
+            export_to_env_if_not_present(QUICKSEARCH_SSL_AUTH_PATH, ssl_auth_path);
         }
         if let Some(ssl_ocsp_path) = ssl_ocsp_path {
-            export_to_env_if_not_present(MEILI_SSL_OCSP_PATH, ssl_ocsp_path);
+            export_to_env_if_not_present(QUICKSEARCH_SSL_OCSP_PATH, ssl_ocsp_path);
         }
-        export_to_env_if_not_present(MEILI_SSL_REQUIRE_AUTH, ssl_require_auth.to_string());
-        export_to_env_if_not_present(MEILI_SSL_RESUMPTION, ssl_resumption.to_string());
-        export_to_env_if_not_present(MEILI_SSL_TICKETS, ssl_tickets.to_string());
-        export_to_env_if_not_present(MEILI_SNAPSHOT_DIR, snapshot_dir);
+        export_to_env_if_not_present(QUICKSEARCH_SSL_REQUIRE_AUTH, ssl_require_auth.to_string());
+        export_to_env_if_not_present(QUICKSEARCH_SSL_RESUMPTION, ssl_resumption.to_string());
+        export_to_env_if_not_present(QUICKSEARCH_SSL_TICKETS, ssl_tickets.to_string());
+        export_to_env_if_not_present(QUICKSEARCH_SNAPSHOT_DIR, snapshot_dir);
         if let Some(snapshot_interval) = schedule_snapshot_to_env(schedule_snapshot) {
-            export_to_env_if_not_present(MEILI_SCHEDULE_SNAPSHOT, snapshot_interval)
+            export_to_env_if_not_present(QUICKSEARCH_SCHEDULE_SNAPSHOT, snapshot_interval)
         }
 
-        export_to_env_if_not_present(MEILI_DUMP_DIR, dump_dir);
-        export_to_env_if_not_present(MEILI_LOG_LEVEL, log_level.to_string());
+        export_to_env_if_not_present(QUICKSEARCH_DUMP_DIR, dump_dir);
+        export_to_env_if_not_present(QUICKSEARCH_LOG_LEVEL, log_level.to_string());
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_CONTAINS_FILTER,
+            QUICKSEARCH_EXPERIMENTAL_CONTAINS_FILTER,
             experimental_contains_filter.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_ENABLE_METRICS,
+            QUICKSEARCH_EXPERIMENTAL_ENABLE_METRICS,
             experimental_enable_metrics.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_SEARCH_QUEUE_SIZE,
+            QUICKSEARCH_EXPERIMENTAL_SEARCH_QUEUE_SIZE,
             experimental_search_queue_size.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_DROP_SEARCH_AFTER,
+            QUICKSEARCH_EXPERIMENTAL_DROP_SEARCH_AFTER,
             experimental_drop_search_after.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_NB_SEARCHES_PER_CORE,
+            QUICKSEARCH_EXPERIMENTAL_NB_SEARCHES_PER_CORE,
             experimental_nb_searches_per_core.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_LOGS_MODE,
+            QUICKSEARCH_EXPERIMENTAL_LOGS_MODE,
             experimental_logs_mode.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_DUMPLESS_UPGRADE,
+            QUICKSEARCH_EXPERIMENTAL_DUMPLESS_UPGRADE,
             experimental_dumpless_upgrade.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_REPLICATION_PARAMETERS,
+            QUICKSEARCH_EXPERIMENTAL_REPLICATION_PARAMETERS,
             experimental_replication_parameters.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_ENABLE_LOGS_ROUTE,
+            QUICKSEARCH_EXPERIMENTAL_ENABLE_LOGS_ROUTE,
             experimental_enable_logs_route.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE,
+            QUICKSEARCH_EXPERIMENTAL_REDUCE_INDEXING_MEMORY_USAGE,
             experimental_reduce_indexing_memory_usage.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS,
+            QUICKSEARCH_EXPERIMENTAL_MAX_NUMBER_OF_BATCHED_TASKS,
             experimental_max_number_of_batched_tasks.to_string(),
         );
         export_to_env_if_not_present(
-            MEILI_EXPERIMENTAL_LIMIT_BATCHED_TASKS_TOTAL_SIZE,
+            QUICKSEARCH_EXPERIMENTAL_LIMIT_BATCHED_TASKS_TOTAL_SIZE,
             experimental_limit_batched_tasks_total_size.to_string(),
         );
         indexer_options.export_to_env();
@@ -701,14 +701,14 @@ impl Opt {
 pub struct IndexerOpts {
     /// Sets the maximum amount of RAM Meilisearch can use when indexing. By default, Meilisearch
     /// uses no more than two thirds of available memory.
-    #[clap(long, env = MEILI_MAX_INDEXING_MEMORY, default_value_t)]
+    #[clap(long, env = QUICKSEARCH_MAX_INDEXING_MEMORY, default_value_t)]
     #[serde(default)]
     pub max_indexing_memory: MaxMemory,
 
     /// Sets the maximum number of threads Meilisearch can use during indexation. By default, the
     /// indexer avoids using more than half of a machine's total processing units. This ensures
     /// Meilisearch is always ready to perform searches, even while you are updating an index.
-    #[clap(long, env = MEILI_MAX_INDEXING_THREADS, default_value_t)]
+    #[clap(long, env = QUICKSEARCH_MAX_INDEXING_THREADS, default_value_t)]
     #[serde(default)]
     pub max_indexing_threads: MaxThreads,
 
@@ -728,12 +728,12 @@ impl IndexerOpts {
         let IndexerOpts { max_indexing_memory, max_indexing_threads, skip_index_budget: _ } = self;
         if let Some(max_indexing_memory) = max_indexing_memory.0 {
             export_to_env_if_not_present(
-                MEILI_MAX_INDEXING_MEMORY,
+                QUICKSEARCH_MAX_INDEXING_MEMORY,
                 max_indexing_memory.to_string(),
             );
         }
         export_to_env_if_not_present(
-            MEILI_MAX_INDEXING_THREADS,
+            QUICKSEARCH_MAX_INDEXING_THREADS,
             max_indexing_threads.0.to_string(),
         );
     }

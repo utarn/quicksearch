@@ -41,12 +41,12 @@ macro_rules! empty_analytics {
     };
 }
 
-/// The Meilisearch config dir:
-/// `~/.config/Meilisearch` on *NIX or *BSD.
+/// The Quicksearch config dir:
+/// `~/.config/Quicksearch` on *NIX or *BSD.
 /// `~/Library/ApplicationSupport` on macOS.
 /// `%APPDATA` (= `C:\Users%USERNAME%\AppData\Roaming`) on windows.
 static MEILISEARCH_CONFIG_PATH: Lazy<Option<PathBuf>> =
-    Lazy::new(|| AppDirs::new(Some("Meilisearch"), false).map(|appdir| appdir.config_dir));
+    Lazy::new(|| AppDirs::new(Some("Quicksearch"), false).map(|appdir| appdir.config_dir));
 
 fn config_user_id_path(db_path: &Path) -> Option<PathBuf> {
     db_path
@@ -57,7 +57,7 @@ fn config_user_id_path(db_path: &Path) -> Option<PathBuf> {
         .map(|(filename, config_path)| config_path.join(filename.trim_start_matches('-')))
 }
 
-/// Look for the instance-uid in the `data.ms` or in `~/.config/Meilisearch/path-to-db-instance-uid`
+/// Look for the instance-uid in the `data.ms` or in `~/.config/Quicksearch/path-to-db-instance-uid`
 fn find_user_id(db_path: &Path) -> Option<InstanceUid> {
     fs::read_to_string(db_path.join("instance-uid"))
         .ok()

@@ -1,5 +1,5 @@
 [package]
-name = "meilisearch"
+name = "quicksearch"
 publish = false
 
 version.workspace = true
@@ -10,7 +10,7 @@ readme.workspace = true
 edition.workspace = true
 license.workspace = true
 
-default-run = "meilisearch"
+default-run = "quicksearch"
 
 [dependencies]
 actix-cors = "0.7.0"

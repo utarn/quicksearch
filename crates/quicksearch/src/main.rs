@@ -192,14 +192,14 @@ pub fn print_launch_resume(opt: &Opt, analytics: Analytics, config_read_from: Op
     let protocol =
         if opt.ssl_cert_path.is_some() && opt.ssl_key_path.is_some() { "https" } else { "http" };
     let ascii_name = r#"
-888b     d888          d8b 888 d8b                                            888
-8888b   d8888          Y8P 888 Y8P                                            888
-88888b.d88888              888                                                888
-888Y88888P888  .d88b.  888 888 888 .d8888b   .d88b.   8888b.  888d888 .d8888b 88888b.
-888 Y888P 888 d8P  Y8b 888 888 888 88K      d8P  Y8b     "88b 888P"  d88P"    888 "88b
-888  Y8P  888 88888888 888 888 888 "Y8888b. 88888888 .d888888 888    888      888  888
-888   "   888 Y8b.     888 888 888      X88 Y8b.     888  888 888    Y88b.    888  888
-888       888  "Y8888  888 888 888  88888P'  "Y8888  "Y888888 888     "Y8888P 888  888
+ ____  __  __          _    _  _____                 _
+|  _ \|  \/  |        | |  (_) / ____|               | |
+| |_) | \  / | ___   | |   _| | (___   ___ _   _ _ __ | |_
+|  _ <| |\/| |/ _ \  | |   | \___ \ / __| | | | '_ \| __|
+| |_) | |  | | (_) | | |___| |____) | (__| |_| | |_) | |_
+|____/|_|  |_|\___/  |_____|_|_____/ \___|\__, | .__/ \__|
+                                       __/ | |
+                                      |___/|_|
 "#;
 
     eprintln!("{}", ascii_name);
@@ -232,11 +232,11 @@ pub fn print_launch_resume(opt: &Opt, analytics: Analytics, config_read_from: Op
         if !opt.no_analytics {
             eprintln!(
                 "
-Thank you for using Meilisearch!
+Thank you for using Quicksearch!
 
-\nWe collect anonymized analytics to improve our product and your experience. To learn more, including how to turn off analytics, visit our dedicated documentation page: https://www.meilisearch.com/docs/learn/what_is_meilisearch/telemetry
+\nTelemetry is disabled by default in Quicksearch. No analytics data is collected.
 
-Anonymous telemetry:\t\"Enabled\""
+Anonymous telemetry:\t\"Disabled\""
             );
         } else {
             eprintln!("Anonymous telemetry:\t\"Disabled\"");
@@ -251,10 +251,10 @@ Anonymous telemetry:\t\"Enabled\""
 
     match (opt.env.as_ref(), &opt.master_key) {
         ("production", Some(_)) => {
-            eprintln!("A master key has been set. Requests to Meilisearch won't be authorized unless you provide an authentication key.");
+            eprintln!("A master key has been set. Requests to Quicksearch won't be authorized unless you provide an authentication key.");
         }
         ("development", Some(master_key)) => {
-            eprintln!("A master key has been set. Requests to Meilisearch won't be authorized unless you provide an authentication key.");
+            eprintln!("A master key has been set. Requests to Quicksearch won't be authorized unless you provide an authentication key.");
 
             if master_key.len() < MASTER_KEY_MIN_SIZE {
                 print_master_key_too_short_warning()
@@ -266,10 +266,8 @@ Anonymous telemetry:\t\"Enabled\""
     }
 
     eprintln!();
-    eprintln!("Check out Meilisearch Cloud!\thttps://www.meilisearch.com/cloud?utm_campaign=oss&utm_source=engine&utm_medium=cli");
-    eprintln!("Documentation:\t\t\thttps://www.meilisearch.com/docs");
-    eprintln!("Source code:\t\t\thttps://github.com/meilisearch/meilisearch");
-    eprintln!("Discord:\t\t\thttps://discord.meilisearch.com");
+    eprintln!("Documentation:\t\t\thttps://quicksearch.com/docs");
+    eprintln!("Source code:\t\t\thttps://github.com/quicksearch/quicksearch");
     eprintln!();
 }
 
@@ -287,7 +285,7 @@ fn print_master_key_too_short_warning() {
     writeln!(stderr, "\n").unwrap();
     writeln!(
         stderr,
-        " Meilisearch started with a master key considered unsafe for use in a production environment.
+        " Quicksearch started with a master key considered unsafe for use in a production environment.
 
  A master key of at least {MASTER_KEY_MIN_SIZE} bytes will be required when switching to a production environment."
     )
@@ -297,7 +295,7 @@ fn print_master_key_too_short_warning() {
 
     eprintln!("\n{}", generated_master_key_message());
     eprintln!(
-        "\nRestart Meilisearch with the argument above to use this new and secure master key."
+        "\nRestart Quicksearch with the argument above to use this new and secure master key."
     )
 }
 
@@ -322,7 +320,7 @@ fn print_missing_master_key_warning() {
 
     eprintln!("\n{}", generated_master_key_message());
     eprintln!(
-        "\nRestart Meilisearch with the argument above to use this new and secure master key."
+        "\nRestart Quicksearch with the argument above to use this new and secure master key."
     )
 }
 

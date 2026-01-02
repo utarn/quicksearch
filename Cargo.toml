@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
-    "crates/meilisearch",
+    "crates/quicksearch",
     "crates/meilitool",
     "crates/meilisearch-types",
     "crates/meilisearch-auth",
@@ -27,8 +27,8 @@ authors = [
     "Quentin de Quelen <quentin@dequelen.me>",
     "Clément Renault <clement@meilisearch.com>",
 ]
-description = "Meilisearch HTTP server"
-homepage = "https://meilisearch.com"
+description = "Quicksearch HTTP server"
+homepage = "https://quicksearch.com"
 readme = "README.md"
 edition = "2021"
 license = "MIT"
