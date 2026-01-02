@@ -12,10 +12,10 @@ use actix_web::web::Data;
 use actix_web::HttpServer;
 use index_scheduler::IndexScheduler;
 use is_terminal::IsTerminal;
-use meilisearch::analytics::Analytics;
-use meilisearch::option::LogMode;
-use meilisearch::search_queue::SearchQueue;
-use meilisearch::{
+use quicksearch::analytics::Analytics;
+use quicksearch::option::LogMode;
+use quicksearch::search_queue::SearchQueue;
+use quicksearch::{
     analytics, create_app, setup_meilisearch, LogRouteHandle, LogRouteType, LogStderrHandle,
     LogStderrType, Opt, SubscriberForSecondLayer,
 };

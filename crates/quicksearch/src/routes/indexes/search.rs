@@ -19,7 +19,7 @@ use crate::error::MeilisearchHttpError;
 use crate::extractors::authentication::policies::*;
 use crate::extractors::authentication::GuardedData;
 use crate::extractors::sequential_extractor::SeqHandler;
-use crate::metrics::MEILISEARCH_DEGRADED_SEARCH_REQUESTS;
+use crate::metrics::QUICKSEARCH_DEGRADED_SEARCH_REQUESTS;
 use crate::routes::indexes::search_analytics::{SearchAggregator, SearchGET, SearchPOST};
 use crate::search::{
     add_search_rules, perform_search, HybridQuery, MatchingStrategy, RankingScoreThreshold,
@@ -464,7 +464,7 @@ pub async fn search_with_post(
     if let Ok(ref search_result) = search_result {
         aggregate.succeed(search_result);
         if search_result.degraded {
-            MEILISEARCH_DEGRADED_SEARCH_REQUESTS.inc();
+            QUICKSEARCH_DEGRADED_SEARCH_REQUESTS.inc();
         }
     }
     analytics.publish(aggregate, &req);
