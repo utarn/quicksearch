@@ -126,33 +126,33 @@ pub async fn get_metrics(
 
     let response = create_all_stats((*index_scheduler).clone(), auth_controller, auth_filters)?;
 
-    crate::metrics::MEILISEARCH_DB_SIZE_BYTES.set(response.database_size as i64);
-    crate::metrics::MEILISEARCH_USED_DB_SIZE_BYTES.set(response.used_database_size as i64);
-    crate::metrics::MEILISEARCH_INDEX_COUNT.set(response.indexes.len() as i64);
+    crate::metrics::QUICKSEARCH_DB_SIZE_BYTES.set(response.database_size as i64);
+    crate::metrics::QUICKSEARCH_USED_DB_SIZE_BYTES.set(response.used_database_size as i64);
+    crate::metrics::QUICKSEARCH_INDEX_COUNT.set(response.indexes.len() as i64);
 
-    crate::metrics::MEILISEARCH_SEARCH_QUEUE_SIZE.set(search_queue.capacity() as i64);
-    crate::metrics::MEILISEARCH_SEARCHES_RUNNING.set(search_queue.searches_running() as i64);
-    crate::metrics::MEILISEARCH_SEARCHES_WAITING_TO_BE_PROCESSED
+    crate::metrics::QUICKSEARCH_SEARCH_QUEUE_SIZE.set(search_queue.capacity() as i64);
+    crate::metrics::QUICKSEARCH_SEARCHES_RUNNING.set(search_queue.searches_running() as i64);
+    crate::metrics::QUICKSEARCH_SEARCHES_WAITING_TO_BE_PROCESSED
         .set(search_queue.searches_waiting() as i64);
 
     for (index, value) in response.indexes.iter() {
-        crate::metrics::MEILISEARCH_INDEX_DOCS_COUNT
+        crate::metrics::QUICKSEARCH_INDEX_DOCS_COUNT
             .with_label_values(&[index])
             .set(value.number_of_documents as i64);
     }
 
     for (kind, value) in index_scheduler.get_stats()? {
         for (value, count) in value {
-            crate::metrics::MEILISEARCH_NB_TASKS
+            crate::metrics::QUICKSEARCH_NB_TASKS
                 .with_label_values(&[&kind, &value])
                 .set(count as i64);
         }
     }
 
     if let Some(last_update) = response.last_update {
-        crate::metrics::MEILISEARCH_LAST_UPDATE.set(last_update.unix_timestamp());
+        crate::metrics::QUICKSEARCH_LAST_UPDATE.set(last_update.unix_timestamp());
     }
-    crate::metrics::MEILISEARCH_IS_INDEXING.set(index_scheduler.is_task_processing()? as i64);
+    crate::metrics::QUICKSEARCH_IS_INDEXING.set(index_scheduler.is_task_processing()? as i64);
 
     let task_queue_latency_seconds = index_scheduler
         .get_tasks_from_authorized_indexes(
@@ -168,7 +168,7 @@ pub async fn get_metrics(
         .first()
         .map(|task| (OffsetDateTime::now_utc() - task.enqueued_at).as_seconds_f64())
         .unwrap_or(0.0);
-    crate::metrics::MEILISEARCH_TASK_QUEUE_LATENCY_SECONDS.set(task_queue_latency_seconds);
+    crate::metrics::QUICKSEARCH_TASK_QUEUE_LATENCY_SECONDS.set(task_queue_latency_seconds);
 
     let encoder = TextEncoder::new();
     let mut buffer = vec![];

@@ -17,7 +17,7 @@ RUN     set -eux; \
         if [ "$apkArch" = "aarch64" ]; then \
             export JEMALLOC_SYS_WITH_LG_PAGE=16; \
         fi && \
-        cargo build --release -p quicksearch -p meilitool
+        cargo build --release -p quicksearch --no-default-features --features mini-dashboard
 
 # Run
 FROM    alpine:3.20
