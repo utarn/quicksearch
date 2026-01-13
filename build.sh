@@ -1,0 +1,1 @@
+ docker buildx build --pull --push --platform linux/arm64,linux/amd64  -t registry2.zarimpun.com/utarn/quicksearch-backend:latest .
