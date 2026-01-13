@@ -7,6 +7,8 @@ use std::sync::Arc;
 use std::thread::available_parallelism;
 use std::time::Duration;
 
+use num_cpus;
+
 use actix_web::http::KeepAlive;
 use actix_web::web::Data;
 use actix_web::HttpServer;
@@ -151,17 +153,38 @@ async fn run_http(
     let index_scheduler = Data::from(index_scheduler);
     let auth_controller = Data::from(auth_controller);
     let analytics = Data::from(analytics);
+    // Calculate effective parallelism, respecting max_cores if set
+    let effective_parallelism = opt.max_cores
+        .map(|cores| {
+            // Use the configured max, but cap at 1 search per core for high-core systems
+            let effective = cores.get().min(available_parallelism().map(|p| p.get()).unwrap_or(usize::MAX);
+            NonZeroUsize::new(effective).unwrap()
+        })
+        .unwrap_or_else(|| {
+            // Default behavior: cap at 16 for search to prevent excessive memory usage
+            let default = available_parallelism()
+                .unwrap_or(NonZeroUsize::new(2).unwrap())
+                .get();
+            let capped = default.min(16);
+            NonZeroUsize::new(capped).unwrap()
+        });
+
     let search_queue = SearchQueue::new(
         opt.experimental_search_queue_size,
-        available_parallelism()
-            .unwrap_or(NonZeroUsize::new(2).unwrap())
-            .checked_mul(opt.experimental_nb_searches_per_core)
-            .unwrap_or(NonZeroUsize::MAX),
+        effective_parallelism,
     )
     .with_time_to_abort(Duration::from_secs(
         usize::from(opt.experimental_drop_search_after) as u64
     ));
     let search_queue = Data::new(search_queue);
+
+    // Log the core limiting configuration
+    tracing::info!(
+        available_cores = num_cpus::get(),
+        max_cores = opt.max_cores.map(|c| c.get()),
+        effective_search_parallelism = effective_parallelism.get(),
+        "Core limiting configuration"
+    );
 
     let http_server = HttpServer::new(move || {
         create_app(

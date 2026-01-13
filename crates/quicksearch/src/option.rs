@@ -54,6 +54,7 @@ const QUICKSEARCH_EXPERIMENTAL_REPLICATION_PARAMETERS: &str = "QUICKSEARCH_EXPER
 const QUICKSEARCH_EXPERIMENTAL_ENABLE_LOGS_ROUTE: &str = "QUICKSEARCH_EXPERIMENTAL_ENABLE_LOGS_ROUTE";
 const QUICKSEARCH_EXPERIMENTAL_CONTAINS_FILTER: &str = "QUICKSEARCH_EXPERIMENTAL_CONTAINS_FILTER";
 const QUICKSEARCH_EXPERIMENTAL_ENABLE_METRICS: &str = "QUICKSEARCH_EXPERIMENTAL_ENABLE_METRICS";
+const QUICKSEARCH_MAX_CORES: &str = "QUICKSEARCH_MAX_CORES";
 const QUICKSEARCH_EXPERIMENTAL_SEARCH_QUEUE_SIZE: &str = "QUICKSEARCH_EXPERIMENTAL_SEARCH_QUEUE_SIZE";
 const QUICKSEARCH_EXPERIMENTAL_DROP_SEARCH_AFTER: &str = "QUICKSEARCH_EXPERIMENTAL_DROP_SEARCH_AFTER";
 const QUICKSEARCH_EXPERIMENTAL_NB_SEARCHES_PER_CORE: &str = "QUICKSEARCH_EXPERIMENTAL_NB_SEARCHES_PER_CORE";
@@ -393,6 +394,12 @@ pub struct Opt {
     #[serde(default = "default_nb_searches_per_core")]
     pub experimental_nb_searches_per_core: NonZeroUsize,
 
+    /// Sets the maximum number of CPU cores to use. If not set, all available cores are used.
+    /// This helps prevent memory issues on high-core servers by limiting resource scaling.
+    #[clap(long, env = QUICKSEARCH_MAX_CORES)]
+    #[serde(default)]
+    pub max_cores: Option<NonZeroUsize>,
+
     /// Experimental logs mode feature. For more information,
     /// see: <https://github.com/orgs/meilisearch/discussions/723>
     ///
@@ -542,6 +549,7 @@ impl Opt {
             experimental_search_queue_size,
             experimental_drop_search_after,
             experimental_nb_searches_per_core,
+            max_cores: _,
             experimental_logs_mode,
             experimental_dumpless_upgrade,
             experimental_enable_logs_route,
@@ -613,6 +621,12 @@ impl Opt {
             QUICKSEARCH_EXPERIMENTAL_NB_SEARCHES_PER_CORE,
             experimental_nb_searches_per_core.to_string(),
         );
+        if let Some(max_cores) = max_cores {
+            export_to_env_if_not_present(
+                QUICKSEARCH_MAX_CORES,
+                max_cores.to_string(),
+            );
+        }
         export_to_env_if_not_present(
             QUICKSEARCH_EXPERIMENTAL_LOGS_MODE,
             experimental_logs_mode.to_string(),
@@ -694,6 +708,15 @@ impl Opt {
             logs_route: self.experimental_enable_logs_route,
             contains_filter: self.experimental_contains_filter,
         }
+    }
+}
+
+/// Returns the maximum number of cores to use, respecting QUICKSEARCH_MAX_CORES if set.
+/// This helps prevent memory issues on high-core servers by limiting resource scaling.
+fn effective_max_cores() -> usize {
+    match std::env::var(QUICKSEARCH_MAX_CORES) {
+        Ok(val) => val.parse::<usize>().unwrap_or_else(|_| num_cpus::get()),
+        Err(_) => num_cpus::get(),
     }
 }
 
@@ -827,7 +850,7 @@ impl FromStr for MaxThreads {
 
 impl Default for MaxThreads {
     fn default() -> Self {
-        MaxThreads(num_cpus::get() / 2)
+        MaxThreads(effective_max_cores() / 2)
     }
 }
 
