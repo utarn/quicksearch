@@ -238,6 +238,7 @@ impl Infos {
             experimental_search_queue_size,
             experimental_drop_search_after,
             experimental_nb_searches_per_core,
+            max_cores: _,
             experimental_logs_mode,
             experimental_dumpless_upgrade,
             experimental_replication_parameters,
